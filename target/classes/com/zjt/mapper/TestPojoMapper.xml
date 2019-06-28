@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjt.mapper.TestPojoMapper" >
+  <resultMap id="BaseResultMap" type="com.zjt.pojo.TestPojo" >
+    <id property="id" column="id" jdbcType="INTEGER"></id>
+    <result column="text" property="text" jdbcType="VARCHAR" />
+    <result column="sid" property="sid" jdbcType="INTEGER" />
+    <collection property="children" ofType="com.zjt.pojo.Sonmenu" columnPrefix="son_">
+        <id property="id" column="id" jdbcType="INTEGER" ></id>
+        <result column="text" property="text" jdbcType="VARCHAR" ></result>
+        <result column="pid" property="pid" jdbcType="INTEGER" ></result>
+    </collection>
+  </resultMap>
+  <select id="getMenu2" resultMap="BaseResultMap">
+       select m.id,m.text,m.sid,s.id son_id,s.text son_text,s.pid son_pid from mainmenu m join sonmenu s on m.id = s.pid;
+  </select>
+</mapper>

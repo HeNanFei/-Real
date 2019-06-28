@@ -1,0 +1,57 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script>
+    $(function () {
+       $('#tree').tree({
+           url:'getMenu.action',
+           animate:true,
+           checkbox:true
+       });
+        $('#tree2').tree({
+            url:'getMenu2.action',
+            animate:true,
+            checkbox:true
+        })
+        $('#datagrid').datagrid({
+            url:'selectRole.action',
+            columns:[[
+                {field:'rname',title:'right name'},
+                {field:'roleid',title:'roleid'},
+                {field:'-',title:'operation',formatter: function(value,row,index){
+                return "<a onclick='doUpdate("+row.roleid+")' href='javascript:void(0)'>operation</a>";
+        }}
+            ]]
+
+        })
+    })
+function doUpdate(roleid) {
+    alert(roleid+'roleid');
+    $('#tree3').tree({
+        url:'getMenuById.action?roleid='+roleid,
+        animate:true,
+        checkbox:true
+    })
+}
+</script>
+<div class="easyui-layout" data-options="fit:true">
+
+	<div class="easyui-panel pd5" data-options="fit:true,border:true">
+
+        </div>
+    <div data-options="region:'west',border:true,split:true," title="west" style="width:200px; padding:5px;">
+        <ul id="tree"></ul>
+        <table id="datagrid"></table>
+    </div>
+
+    <div data-options="region:'center',border:true,split:true," title="center" style="width:150px; padding:5px;">
+        <ul id="tree2"></ul>
+<!--
+        <a class="easy-linkbutton" href="TestC.action">测试按钮</a>
+-->
+    </div>
+    <div data-options="region:'east',border:true,split:true," title="east" style="width:150px; padding:5px;">
+        <ul id="tree3"></ul>
+    </div>
+
+
+    </div>
+</div>

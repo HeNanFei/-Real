@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjt.mapper.Classes1Mapper" >
+  <resultMap id="BaseResultMap" type="com.zjt.pojo.Classes1" >
+    <id column="cno" property="cno" jdbcType="INTEGER" />
+    <result column="createTime" property="createtime" jdbcType="DATE" />
+    <result column="cnumber" property="cnumber" jdbcType="INTEGER" />
+    <result column="pname" property="pname" jdbcType="VARCHAR" />
+    <result column="grade" property="grade" jdbcType="VARCHAR" />
+    <result column="ctype" property="ctype" jdbcType="VARCHAR" />
+    <result column="tname" property="tname" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    cno, createTime, cnumber, pname, grade, ctype, tname
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zjt.pojo.Classes1Example" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from classes1
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from classes1
+    where cno = #{cno,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from classes1
+    where cno = #{cno,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zjt.pojo.Classes1Example" >
+    delete from classes1
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zjt.pojo.Classes1" >
+    insert into classes1 (cno, createTime, cnumber, 
+      pname, grade, ctype, 
+      tname)
+    values (#{cno,jdbcType=INTEGER}, #{createtime,jdbcType=DATE}, #{cnumber,jdbcType=INTEGER}, 
+      #{pname,jdbcType=VARCHAR}, #{grade,jdbcType=VARCHAR}, #{ctype,jdbcType=VARCHAR}, 
+      #{tname,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjt.pojo.Classes1" >
+    insert into classes1
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cno != null" >
+        cno,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="cnumber != null" >
+        cnumber,
+      </if>
+      <if test="pname != null" >
+        pname,
+      </if>
+      <if test="grade != null" >
+        grade,
+      </if>
+      <if test="ctype != null" >
+        ctype,
+      </if>
+      <if test="tname != null" >
+        tname,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cno != null" >
+        #{cno,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=DATE},
+      </if>
+      <if test="cnumber != null" >
+        #{cnumber,jdbcType=INTEGER},
+      </if>
+      <if test="pname != null" >
+        #{pname,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null" >
+        #{grade,jdbcType=VARCHAR},
+      </if>
+      <if test="ctype != null" >
+        #{ctype,jdbcType=VARCHAR},
+      </if>
+      <if test="tname != null" >
+        #{tname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zjt.pojo.Classes1Example" resultType="java.lang.Integer" >
+    select count(*) from classes1
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update classes1
+    <set >
+      <if test="record.cno != null" >
+        cno = #{record.cno,jdbcType=INTEGER},
+      </if>
+      <if test="record.createtime != null" >
+        createTime = #{record.createtime,jdbcType=DATE},
+      </if>
+      <if test="record.cnumber != null" >
+        cnumber = #{record.cnumber,jdbcType=INTEGER},
+      </if>
+      <if test="record.pname != null" >
+        pname = #{record.pname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.grade != null" >
+        grade = #{record.grade,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ctype != null" >
+        ctype = #{record.ctype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tname != null" >
+        tname = #{record.tname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update classes1
+    set cno = #{record.cno,jdbcType=INTEGER},
+      createTime = #{record.createtime,jdbcType=DATE},
+      cnumber = #{record.cnumber,jdbcType=INTEGER},
+      pname = #{record.pname,jdbcType=VARCHAR},
+      grade = #{record.grade,jdbcType=VARCHAR},
+      ctype = #{record.ctype,jdbcType=VARCHAR},
+      tname = #{record.tname,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjt.pojo.Classes1" >
+    update classes1
+    <set >
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=DATE},
+      </if>
+      <if test="cnumber != null" >
+        cnumber = #{cnumber,jdbcType=INTEGER},
+      </if>
+      <if test="pname != null" >
+        pname = #{pname,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null" >
+        grade = #{grade,jdbcType=VARCHAR},
+      </if>
+      <if test="ctype != null" >
+        ctype = #{ctype,jdbcType=VARCHAR},
+      </if>
+      <if test="tname != null" >
+        tname = #{tname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where cno = #{cno,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjt.pojo.Classes1" >
+    update classes1
+    set createTime = #{createtime,jdbcType=DATE},
+      cnumber = #{cnumber,jdbcType=INTEGER},
+      pname = #{pname,jdbcType=VARCHAR},
+      grade = #{grade,jdbcType=VARCHAR},
+      ctype = #{ctype,jdbcType=VARCHAR},
+      tname = #{tname,jdbcType=VARCHAR}
+    where cno = #{cno,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjt.mapper.Prescore1Mapper" >
+  <resultMap id="BaseResultMap" type="com.zjt.pojo.Prescore1" >
+    <result column="chinese" property="chinese" jdbcType="INTEGER" />
+    <result column="math" property="math" jdbcType="INTEGER" />
+    <result column="english" property="english" jdbcType="INTEGER" />
+    <result column="politics" property="politics" jdbcType="INTEGER" />
+    <result column="history" property="history" jdbcType="INTEGER" />
+    <result column="geography" property="geography" jdbcType="INTEGER" />
+    <result column="physics" property="physics" jdbcType="INTEGER" />
+    <result column="chemistry" property="chemistry" jdbcType="INTEGER" />
+    <result column="biology" property="biology" jdbcType="INTEGER" />
+    <result column="sname" property="sname" jdbcType="VARCHAR" />
+    <result column="grade" property="grade" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    chinese, math, english, politics, history, geography, physics, chemistry, biology, 
+    sname, grade
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zjt.pojo.Prescore1Example" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from prescore1
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.zjt.pojo.Prescore1Example" >
+    delete from prescore1
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zjt.pojo.Prescore1" >
+    insert into prescore1 (chinese, math, english, 
+      politics, history, geography, 
+      physics, chemistry, biology, 
+      sname, grade)
+    values (#{chinese,jdbcType=INTEGER}, #{math,jdbcType=INTEGER}, #{english,jdbcType=INTEGER}, 
+      #{politics,jdbcType=INTEGER}, #{history,jdbcType=INTEGER}, #{geography,jdbcType=INTEGER}, 
+      #{physics,jdbcType=INTEGER}, #{chemistry,jdbcType=INTEGER}, #{biology,jdbcType=INTEGER}, 
+      #{sname,jdbcType=VARCHAR}, #{grade,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjt.pojo.Prescore1" >
+    insert into prescore1
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="chinese != null" >
+        chinese,
+      </if>
+      <if test="math != null" >
+        math,
+      </if>
+      <if test="english != null" >
+        english,
+      </if>
+      <if test="politics != null" >
+        politics,
+      </if>
+      <if test="history != null" >
+        history,
+      </if>
+      <if test="geography != null" >
+        geography,
+      </if>
+      <if test="physics != null" >
+        physics,
+      </if>
+      <if test="chemistry != null" >
+        chemistry,
+      </if>
+      <if test="biology != null" >
+        biology,
+      </if>
+      <if test="sname != null" >
+        sname,
+      </if>
+      <if test="grade != null" >
+        grade,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="chinese != null" >
+        #{chinese,jdbcType=INTEGER},
+      </if>
+      <if test="math != null" >
+        #{math,jdbcType=INTEGER},
+      </if>
+      <if test="english != null" >
+        #{english,jdbcType=INTEGER},
+      </if>
+      <if test="politics != null" >
+        #{politics,jdbcType=INTEGER},
+      </if>
+      <if test="history != null" >
+        #{history,jdbcType=INTEGER},
+      </if>
+      <if test="geography != null" >
+        #{geography,jdbcType=INTEGER},
+      </if>
+      <if test="physics != null" >
+        #{physics,jdbcType=INTEGER},
+      </if>
+      <if test="chemistry != null" >
+        #{chemistry,jdbcType=INTEGER},
+      </if>
+      <if test="biology != null" >
+        #{biology,jdbcType=INTEGER},
+      </if>
+      <if test="sname != null" >
+        #{sname,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null" >
+        #{grade,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zjt.pojo.Prescore1Example" resultType="java.lang.Integer" >
+    select count(*) from prescore1
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update prescore1
+    <set >
+      <if test="record.chinese != null" >
+        chinese = #{record.chinese,jdbcType=INTEGER},
+      </if>
+      <if test="record.math != null" >
+        math = #{record.math,jdbcType=INTEGER},
+      </if>
+      <if test="record.english != null" >
+        english = #{record.english,jdbcType=INTEGER},
+      </if>
+      <if test="record.politics != null" >
+        politics = #{record.politics,jdbcType=INTEGER},
+      </if>
+      <if test="record.history != null" >
+        history = #{record.history,jdbcType=INTEGER},
+      </if>
+      <if test="record.geography != null" >
+        geography = #{record.geography,jdbcType=INTEGER},
+      </if>
+      <if test="record.physics != null" >
+        physics = #{record.physics,jdbcType=INTEGER},
+      </if>
+      <if test="record.chemistry != null" >
+        chemistry = #{record.chemistry,jdbcType=INTEGER},
+      </if>
+      <if test="record.biology != null" >
+        biology = #{record.biology,jdbcType=INTEGER},
+      </if>
+      <if test="record.sname != null" >
+        sname = #{record.sname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.grade != null" >
+        grade = #{record.grade,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update prescore1
+    set chinese = #{record.chinese,jdbcType=INTEGER},
+      math = #{record.math,jdbcType=INTEGER},
+      english = #{record.english,jdbcType=INTEGER},
+      politics = #{record.politics,jdbcType=INTEGER},
+      history = #{record.history,jdbcType=INTEGER},
+      geography = #{record.geography,jdbcType=INTEGER},
+      physics = #{record.physics,jdbcType=INTEGER},
+      chemistry = #{record.chemistry,jdbcType=INTEGER},
+      biology = #{record.biology,jdbcType=INTEGER},
+      sname = #{record.sname,jdbcType=VARCHAR},
+      grade = #{record.grade,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

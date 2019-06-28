@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjt.mapper.RoleMapper" >
+  <resultMap id="BaseResultMap" type="com.zjt.pojo.Role" >
+    <result column="roleid" property="roleid" jdbcType="INTEGER" />
+    <result column="rname" property="rname" jdbcType="VARCHAR" />
+    <result column="mid" property="mid" jdbcType="INTEGER" />
+  </resultMap>
+  <select id="selectRole" resultType="com.zjt.pojo.Role">
+    select * from role;
+  </select>
+</mapper>
